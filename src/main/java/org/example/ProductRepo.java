@@ -19,11 +19,11 @@ public class ProductRepo {
         return -1;
     }
 
-    public List<Product> getAllProducts() {
+    List<Product> getAllProducts() {
         return products;
     }
 
-    public Product getProductById(String id) {
+    Product getProductById(String id) {
         int index = getIndex(id);
         if (index != -1) {
             return products.get(index);
@@ -31,4 +31,14 @@ public class ProductRepo {
         System.out.println("Product not found");
         return null;
     }
+
+    void addProduct(Product product) {
+        products.add(product);
+    }
+
+    void removeProduct(String id) {
+        products.removeIf(product -> product.id().equals(id));
+    }
+
+
 }

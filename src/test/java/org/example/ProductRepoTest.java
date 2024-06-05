@@ -42,4 +42,17 @@ class ProductRepoTest {
     void getProductById_returnsError_ifIdDoesNotExist() {
         assertNull(testProductRepo.getProductById("test-invalidId-2"));
     }
+
+    @Test
+    void addProduct_addsProductToProductRepo() {
+        Product testProduct = new Product("test-4", "test-product4", "test-category4", "test-description", 5.98);
+        testProductRepo.addProduct(testProduct);
+        assertEquals(testProduct, testProductRepo.getProductById("test-4"));
+    }
+
+    @Test
+    void removeProduct_deletesProductFromProductRepo() {
+        testProductRepo.removeProduct("test-2");
+        assertNull(testProductRepo.getProductById("test-2"));
+    }
 }
