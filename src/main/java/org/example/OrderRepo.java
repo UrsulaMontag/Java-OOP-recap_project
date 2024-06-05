@@ -5,11 +5,11 @@ import java.util.List;
 public interface OrderRepo {
     List<Order> getAllOrders();
 
-    Order getOrderById();
+    Order getOrderById(String id);
 
-    void addOrder();
+    void addOrder(Order order);
 
-    void removeOrder();
+    void removeOrder(String id);
 
     void deleteAllOrders();
 
