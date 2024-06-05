@@ -39,7 +39,7 @@ class ProductRepoTest {
     }
 
     @Test
-    void getProductById_returnsError_ifIdDoesNotExist() {
+    void getProductById_returnsNull_ifIdDoesNotExist() {
         assertNull(testProductRepo.getProductById("test-invalidId-2"));
     }
 
