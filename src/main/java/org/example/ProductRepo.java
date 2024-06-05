@@ -40,5 +40,23 @@ public class ProductRepo {
         products.removeIf(product -> product.id().equals(id));
     }
 
+    @Override
+    public String toString() {
+        return "ProductRepo{" +
+                "products=" + products +
+                '}';
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProductRepo that = (ProductRepo) o;
+        return Objects.equals(products, that.products);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(products);
+    }
 }
