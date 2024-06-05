@@ -8,9 +8,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ProductRepoTest {
-    Product testProduct1 = new Product("test-1", "test-product1", "test-category1", "test-description", 5.98);
-    Product testProduct2 = new Product("test-2", "test-product2", "test-category2", "test-description", 3.98);
-    Product testProduct3 = new Product("test-3", "test-product3", "test-category3", "test-description", 4.98);
+    Product testProduct1 = new Product("test-1", "test-product1", "test-category1", "test-description", 5.98, 550);
+    Product testProduct2 = new Product("test-2", "test-product2", "test-category2", "test-description", 3.98, 10);
+    Product testProduct3 = new Product("test-3", "test-product3", "test-category3", "test-description", 4.98, 400);
 
     ProductRepo testProductRepo = new ProductRepo(new ArrayList<>() {{
         add(testProduct1);
@@ -45,7 +45,7 @@ class ProductRepoTest {
 
     @Test
     void addProduct_addsProductToProductRepo() {
-        Product testProduct = new Product("test-4", "test-product4", "test-category4", "test-description", 5.98);
+        Product testProduct = new Product("test-4", "test-product4", "test-category4", "test-description", 5.98, 56);
         testProductRepo.addProduct(testProduct);
         assertEquals(testProduct, testProductRepo.getProductById("test-4"));
     }
