@@ -36,7 +36,7 @@ class OrderMapRepoTest {
     }
 
     @Test
-    void _addsOrderToOrderRepo() {
+    void addOrder_addsOrderToOrderRepo() {
         Order testOrder = new Order("test-9", 1, 3 * 2.98);
         testOrderRepo.addOrder(testOrder);
         assertEquals(testOrder, testOrderRepo.getOrderById("test-9"));

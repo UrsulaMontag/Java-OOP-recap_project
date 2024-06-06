@@ -3,6 +3,7 @@ package org.example;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class OrderMapRepo implements OrderRepo {
     private Map<String, Order> orders;
@@ -38,5 +39,25 @@ public class OrderMapRepo implements OrderRepo {
     @Override
     public void deleteAllOrders() {
         orders.clear();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OrderMapRepo that = (OrderMapRepo) o;
+        return Objects.equals(orders, that.orders);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(orders);
+    }
+
+    @Override
+    public String toString() {
+        return "OrderMapRepo{" +
+                "orders=" + orders +
+                '}';
     }
 }
