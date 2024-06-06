@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,25 +22,26 @@ class ShopServiceTest {
         add(testProduct2);
         add(testProduct3);
     }});
-    OrderListRepo testRequestedOrder = new OrderListRepo(new ArrayList<>() {{
-        add(testOrder1);
-        add(testOrder2);
-        add(testOrder3);
+    OrderMapRepo testRequestedOrder = new OrderMapRepo(new HashMap<>() {{
+        put(testOrder1.productId(), testOrder1);
+        put(testOrder2.productId(), testOrder2);
+        put(testOrder3.productId(), testOrder3);
     }});
-
     private ShopService testShopService = new ShopService(testExistingProducts, testRequestedOrder);
 
     @Test
-    void placeOrder_returnsOrderListRepo() {
-        OrderListRepo expected = testShopService.placeOrder();
-        assertNotNull(expected);
+    void placeOrder_returnsOrderListRepo_withNewOrder() {
+        testShopService.getPlacedOrderMap().addOrder(testOrder2);
+        OrderMapRepo afterPlace = testShopService.placeOrder(new Order("test-2", 3, 3 * 3.98));
+        int expectedNum = 5;
+        double expectedSum = 5 * 3.98;
+        assertEquals(expectedNum, testShopService.getPlacedOrderMap().getOrderById("test-2").number());
     }
 
     @Test
     void isProductAvailable_returnsTrue_whenProductIsAvailable() {
         assertTrue(testShopService.isProductAvailable(testOrder3));
         assertTrue(testShopService.isProductAvailable(new Order("test-2", 9, 9 * 3.98)));
-
     }
 
     @Test
